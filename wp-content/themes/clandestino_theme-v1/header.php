@@ -21,14 +21,22 @@
 
 <?php if ( is_single() && in_category('projetos') ) : ?>
 	<body <?php body_class('post-projetos'); ?>>
+
+<?php elseif ( is_single() && in_category('blog') ) : ?>
+	<body <?php body_class('post-blog'); ?>>
+
+<?php elseif ( is_tag() || is_search() || is_archive() ) : ?>
+	<body <?php body_class('post-blog'); ?>>
+
 <?php elseif ( in_category('projetos') ) : ?>
 	<body <?php body_class('page-projetos'); ?>>
+
 <?php else: ?>
 	<body <?php body_class(); ?>>
+
 <?php endif; ?>
 
-
-
+		
 <?php if ( is_home() ) : ?>
 		<header class="header_home">
 			<span data-scroll-index="1" class="target" id="home"> </span>

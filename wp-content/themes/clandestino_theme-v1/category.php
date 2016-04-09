@@ -18,7 +18,11 @@
 					<?php 	endwhile; ?>
 					<span class="clear"></span>
 
-					<?php get_template_part('pagination'); ?>
+					<section class="block_wpr pagination">
+						<div class="block_cntt">
+							<?php get_template_part('pagination'); ?>
+						</div><!-- .block_cntt -->
+					</section><!-- .pagination -->
 
 					<?php else: ?>
 						<div class="error">

@@ -7,6 +7,7 @@
     $pg_oqfazemos_05 = 47;
     $pg_oqfazemos_06 = 49;
     $pg_oqfazemos_07 = 55;
+    $pg_oqfazemos_08 = 100;
 ?>
 
 <span data-scroll-index="4" class="target" id="oquefazemos"> </span>
@@ -142,12 +143,29 @@
 				<div class="col1-4">
 					<div class="service_wpr">
 						<div class="service">
-							<figure>
-								<img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/oquefazemos_logo.png"></div>
-							</figure>
+							<h3 class="service_title">
+								<?php postTitle($pg_oqfazemos_08); ?>
+							</h3>
+						</div>
+					</div>
+					<div class="service_wpr">
+						<div class="service">
+							<div class="hover">
+								<?php postContent($pg_oqfazemos_08); ?>
+							</div>
 						</div>
 					</div>
 				</div>
+
+				<!-- <div class="col1-4">
+					<div class="service_wpr">
+						<div class="service">
+							<figure>
+								<img class="logo" src="<?php //echo get_template_directory_uri(); ?>/img/oquefazemos_logo.png"></div>
+							</figure>
+						</div>
+					</div>
+				</div> -->
 				<span class="clear"></span>
 
 			</div>

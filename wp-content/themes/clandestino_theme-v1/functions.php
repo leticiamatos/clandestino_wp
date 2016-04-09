@@ -312,7 +312,8 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
 function html5_blank_view_article($more)
 {
     global $post;
-    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'html5blank') . '</a>';
+    //return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'html5blank') . '</a>';
+    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . 'Leia mais' . '</a>';
 }
 
 // Remove Admin bar
@@ -539,7 +540,7 @@ function getMenu(){
       '<a data-scroll-nav="4" class="menu-oquefazemos">O Que Fazemos</a>'.
       '<a data-scroll-nav="5" class="menu-sobre">Sobre</a>'.
       '<a data-scroll-nav="6" class="menu-contato">Contato</a>'.
-      '<a href="'. home_url() .'/blog" class="menu-blog">Blog</a>';
+      '<a href="'. get_category_link(9) .'" class="menu-blog">Blog</a>';
       //'<li class="menu-item mobile"><a href="'. $cat_link .'">As Histórias</a>'.
   } else{
     $menu ='<a href="'. home_url() .'/#home" class="menu-home">Home</a>'.
@@ -548,7 +549,7 @@ function getMenu(){
       '<a href="'. home_url() .'/#oquefazemos" class="menu-oquefazemos">O Que Fazemos</a>'.
       '<a href="'. home_url() .'/#sobre" class="menu-sobre">Sobre</a>'.
       '<a href="'. home_url() .'/#contato" class="menu-contato">Contato</a>'.
-      '<a href="'. home_url() .'/blog" class="menu-blog">Blog</a>';
+      '<a href="'. get_category_link(9) .'" class="menu-blog">Blog</a>';
   }            
   echo $menu;
 }

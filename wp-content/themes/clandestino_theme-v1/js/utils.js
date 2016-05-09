@@ -15,7 +15,11 @@ $(function() {
 		openEffect  : 'none',
 		closeEffect	: 'none'
 	});
-
+	// $('.gallery-item a img').each(function(){
+	// 	img_description = $(this).attr('alt');
+	// 	$(this).parent().attr( 'title', img_description );
+	// });
+	
 	$('.bxslider').bxSlider({
 		minSlides: 1,
 		maxSlides: 3,
@@ -121,14 +125,22 @@ $(function() {
 
 	// Menu Dropdown 
 	$( ".menu_link" ).click(function() {
-		if ($( window ).width() < 979){
-			$( ".menu.responsive.cntt" ).toggle("blind");
+		if ($( window ).width() < 991){
+			$( ".block_menu .menu" ).toggleClass("active");
 		}
 	});
 	$( ".menu.responsive.cntt" ).click(function() {
-		if ($( window ).width() < 979){
-			$( ".menu.responsive.cntt" ).toggle("blind");
+		if ($( window ).width() < 991){
+			$( ".block_menu .menu" ).removeClass("active");
 		}
+	});
+
+	// Ajax
+	$.ajax({
+	  	url: "test.html",
+	  	context: document.body
+	}).done(function() {
+	  	$( this ).addClass( "done" );
 	});
 })
 
@@ -166,6 +178,7 @@ $(document).ready(function(){
 	    }
 	}
 	setOrientation();
+
 
 	$("#"+MEASUREMENTS_ID).text(getDimensions());
 	$(window).on("resize", function(){

@@ -533,6 +533,8 @@ function postContent($postId){
 function getMenu(){
   if ( is_home() ) {
     //$cat_link = get_category_link( $cat_mapa );
+    $cat_obj = get_category_by_slug( 'blog' );
+    $catid = $cat_obj->term_id;
 
     $menu ='<a data-scroll-nav="1" class="menu-home">Home</a>'.
       '<a data-scroll-nav="2" class="menu-destaque">Destaque</a>'.
@@ -540,7 +542,7 @@ function getMenu(){
       '<a data-scroll-nav="4" class="menu-oquefazemos">O Que Fazemos</a>'.
       '<a data-scroll-nav="5" class="menu-sobre">Sobre</a>'.
       '<a data-scroll-nav="6" class="menu-contato">Contato</a>'.
-      '<a href="'. get_category_link(9) .'" class="menu-blog">Blog</a>';
+      '<a href="'. get_category_link($catid) .'" class="menu-blog">Blog</a>';
       //'<li class="menu-item mobile"><a href="'. $cat_link .'">As Histórias</a>'.
   } else{
     $menu ='<a href="'. home_url() .'/#home" class="menu-home">Home</a>'.
@@ -549,7 +551,7 @@ function getMenu(){
       '<a href="'. home_url() .'/#oquefazemos" class="menu-oquefazemos">O Que Fazemos</a>'.
       '<a href="'. home_url() .'/#sobre" class="menu-sobre">Sobre</a>'.
       '<a href="'. home_url() .'/#contato" class="menu-contato">Contato</a>'.
-      '<a href="'. get_category_link(9) .'" class="menu-blog">Blog</a>';
+      '<a href="'. get_category_link($catid) .'" class="menu-blog">Blog</a>';
   }            
   echo $menu;
 }
@@ -562,7 +564,7 @@ function getLogoLink(){
   echo $link;
 }
 
-function createGallery($post_id){
+function createGallery2($post_id){
   $post = get_post( $post_id ); 
   $gallery = get_post_gallery_images( $post ); 
 
@@ -572,13 +574,70 @@ function createGallery($post_id){
 
         // Loop through each image in each gallery
         foreach( $gallery as $image_url ) {
-
-        $image_list .= '<li><a data-fancybox-group="galleria" class="fancybox" href="' . $image_url . '"><img src="' . $image_url . '" /></a>' . '</li>';
-
+            $image_list .= '<li class="gallery-item"><a data-fancybox-group="galleria" class="fancybox" href="' . $image_url . '"><img src="' . $image_url . '" /></a>' . '</li>';
         }
 
         $image_list .= '</ul>';
         echo $image_list;
+    else:
+        return false;
+    endif;
+}
+
+function createGallery($posts_id){
+    $thumb_ID = get_post_thumbnail_id( $posts_id );
+    $attachments = get_children( 
+        array( 
+            'post_parent' => $posts_id, 
+            'post_status' => 'inherit', 
+            'post_type' => 'attachment', 
+            'post_mime_type' => 'image', 
+            'order' => $atts['order'], 
+            'orderby' => $atts['orderby'],
+            'exclude' => $thumb_ID
+            ) );
+
+    $parentpost = get_post( $post_id ); 
+    $gallery = get_post_gallery_images( $parentpost ); 
+
+    $image_list = '<ul class="bxslider">';
+
+    if($attachments):
+
+        foreach ( $attachments as $item){
+            //$attr = ( trim( $item->post_excerpt ) ) ? array( 'aria-describedby' => "$selector-$id" ) : '';
+            // $title =       $item->post_title;
+            $url =         wp_get_attachment_url( $item->ID );
+            // $link =        get_attachment_link( $item->ID );
+            // $alt =         get_post_meta( $item->ID, '_wp_attachment_image_alt', true );
+            // $description = $item->post_content;
+            $caption =     $item->post_excerpt;
+            // $attr = get_post_meta( $item->ID, '_wp_attachment_image_alt', true );
+
+            $image_list .= '<li class="gallery-item"><a data-fancybox-group="galleria" class="fancybox" href="' . $url . '" alt="'. $caption .'"><img src="' . $url . '" alt="'. $caption .'" /></a>' . '</li>';
+        }
+    
+    elseif ($gallery):
+
+        $image_list = '<ul class="bxslider">';
+
+        // Loop through each image in each gallery
+        foreach( $gallery as $image_url ) {
+            $image_list .= '<li class="gallery-item"><a data-fancybox-group="galleria" class="fancybox" href="' . $image_url . '"><img src="' . $image_url . '" /></a>' . '</li>';
+        }
+
+    else:
+        $image_list .= '<h5> Projeto sem imagens... </h5>';
+    endif;
+        $image_list .= '</ul>';
+        echo $image_list;
+}
+
+function panelimages($post_id){
+  $post = get_post( $post_id ); 
+  $gallery = get_post_gallery_images( $post ); 
+  if($gallery):
+        return $gallery;
     else:
         return false;
     endif;

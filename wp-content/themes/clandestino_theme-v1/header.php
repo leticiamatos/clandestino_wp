@@ -1,7 +1,8 @@
 <!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
 	<head>
-		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700|Ubuntu:400,700' rel='stylesheet' type='text/css'>
+		<!-- <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700|Ubuntu:400,700' rel='stylesheet' type='text/css'> -->
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,300' rel='stylesheet' type='text/css'>
 
 		<meta charset="<?php bloginfo('charset'); ?>">
 		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' : '; } ?><?php bloginfo('name'); ?></title>
@@ -13,7 +14,7 @@
 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="<?php bloginfo('description'); ?>">
+		<!--meta name="description" content="<?php// bloginfo('description'); ?>"-->
 
 		<?php wp_head(); ?>
 
@@ -42,11 +43,15 @@
 			<span data-scroll-index="1" class="target" id="home"> </span>
 		
 			<?php
-				$a = array('1' => '1', '2'=> '2', '3'=> '3');
-				$random_n = array_rand($a, 1); 
+				// Sort a number between 1 - 14 
+				$a = array('1' => '1', '2'=> '2', '3'=> '3', '4'=> '4', '5'=> '5', '6'=> '6', '7'=> '7', '8'=> '8', '9'=> '9', '10'=> '10', '11'=> '11', '12'=> '12', '13'=> '13', '14'=> '14');
+				//$galleryimages = panelimages(274);
+				$galleryimages = panelimages(271);
+				//var_dump($galleryimages);
+				$random_n = $galleryimages[array_rand($a)]; 
 			?>
 			<section class="home_panel">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/index_abertura_0.jpg" />
+				<img src="<?php echo $random_n; ?>" />
 			</section>
 			<div class="gap"></div>
 			<div class="panel logo">
@@ -61,11 +66,12 @@
 						</h1>
 
 						<a class="menu_link"></a>
-						<div class="menu">
+						<div class="menu_wpr">
 							<ul class="menu" role="navigation">
 								<?php 
 									getMenu();
 								?>
+								<span class="clear"></span>
 							</ul>
 						</div>
 					</div>
@@ -83,7 +89,8 @@
 <?php elseif ( in_category('blog') ||  is_page('blog') ) : ?>
 
 		<section class="home_panel">
-			<img src="<?php echo get_template_directory_uri(); ?>/img/index_blog_0.jpg" />
+			<!-- <img src="<?php //echo get_template_directory_uri(); ?>/img/index_blog_0.jpg" /> -->
+			<figure></figure>
 		</section>
 		<header class="header_default">
 			<div class="fixed">	

@@ -2,10 +2,6 @@
 Additional stylesheet to Clandestino
 */
 
-/* Font Families */
-@fontSerif: 'PT Serif', serif;
-@fontSans: 'Open Sans', sans-serif;
-
 //*,h2, h3, h4, h5, h6, body{
 body{
   font-family: @fontSans;
@@ -61,6 +57,11 @@ body{
   -o-box-shadow:@shadow !important;
   -ms-box-shadow:@shadow !important;
 }
+.innerBorder{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
 .clear{
   display: block; 
   clear: both;
@@ -98,6 +99,7 @@ a:hover{
 @cG4: #FEFEFE;
 @cR: #621E1F;
 @cRa: rgba(100,30,30,0.4);
+@cBege: #F6F2EF;
 
 @cY: #621E1F;
 @cGreen: #30DD9B;
@@ -105,10 +107,14 @@ a:hover{
 
 @cTest: rgba(0,255,0, 0.3);
 
-/* Tipography */
-@fontSlab: 'Roboto Slab', serif;
-@fontSans: 'Roboto', sans-serif;
-@fontRegular: 'Ubuntu', sans-serif;
+/* Tipography *//* Font Families */
+// @fontSlab: 'Roboto Slab', serif;
+// @fontSans: 'Roboto', sans-serif;
+// @fontRegular: 'Ubuntu', sans-serif;
+
+@fontSlab: 'Lato', sans-serif;
+@fontSans: 'Lato', sans-serif;
+@fontRegular: 'Lato', sans-serif;
 
 body{
   font-family: @fontRegular;
@@ -166,9 +172,9 @@ input.btn{
   cursor: pointer;
   display: inline-block;
   font-family: @fontRegular;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
@@ -180,17 +186,17 @@ input.btn{
 /* Home */
 // destaque
 .block_destaque{
-  padding-top: 65px;
+  //padding-top: 65px;
   background: @cW;
-  min-height: 825px;
+  padding-bottom: 40px;
 }
 .block_title{
-  padding-top: 45px;
+  padding-top: 55px;
   text-align: center;
   text-transform: uppercase;
-  font-size: 28px;
+  font-size: 21px;
   letter-spacing: 3px;
-  font-weight: bold;
+  font-weight: 800;
   .title;
 }
 .target{
@@ -202,29 +208,45 @@ input.btn{
   background: @cW url(../img/menu_bg.gif) bottom repeat-x;
   text-align: center;
   padding-top: 15px;
+  z-index: 30;
+  
+  .menu_link{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 100%;
+    background: url(../img/menu-link.gif) center no-repeat;
+    cursor: pointer;
+    display: none;
+  }
 }
 ul.menu{
   margin-top: 10px;
   height: 68px;
   overflow: hidden;
+  z-index: 40;
+  .transition_menu;
 
   a{ 
-    display: inline-block;
-    padding: 0 1%;
-    margin: 0 2.4%;
+    display: block;
+    width: 14.28%;
+    float: left;
     font-family: @fontSans;
     text-transform: uppercase;
-    font-size: 15px;
+    font-size: 13px;
+    letter-spacing: 1px;
     font-weight: bold;
     background:transparent;
     height: 70px;
     line-height: 70px;
+    color: #8f8f8f;
     .transition_menu;
+    .innerBorder;
     &:hover,
     &.current{
-      background:@cR;
       opacity: 1;
-      color: @cW;
+      color: @cK;
     }
   }
 }
@@ -250,6 +272,19 @@ body.not-top{
 .fixed{
   height: 253px !important;
 }
+.gap{
+  height:83vh;
+}
+.vertical .gap{
+  height: 40vh;
+}
+body.tag.vertical .gap,
+body.category-blog.vertical .gap,
+body.post-blog.vertical .gap{
+  height: 11vh;
+}
+
+
 .home_panel{
   position: relative;
   z-index: -1;
@@ -266,13 +301,21 @@ body.not-top{
 .panel.logo{
   text-align: center;
   position: relative;
-  top: 10px;
+  top: 7px;
+  //height: 10vh;
+  height: auto;
   max-width: 100%;
   img{
-    width: 100%;
-    max-width: 1400px;
+    //width: 100%;
+    max-width: 100%;
+    //height: 100%;
+    //max-width: 1400px;
     display: inline-block;
   }
+}
+.vertical .panel.logo{
+  top: 2px;
+  height: 5vh;
 }
 h1.logo{
   img{
@@ -280,18 +323,18 @@ h1.logo{
     .transition;
   }
 }
-.gap{
-  height: 750px ;
-}
+
 
 body.home{
   .highlight.post{
     padding-top: 50px;
 
-    button{
+    button, a.btn{
       position: absolute;
       right: 20px;
     }
+    a.btn{ display: none;}
+    .btn.permalink,
     .btn.open{
       bottom: 20px;
     }
@@ -315,8 +358,8 @@ body.home{
         top: 20px;
         left: 20px;
         color: @cW;
-        font-weight: bold;
-        font-size: 28px;
+        font-weight: 800;
+        font-size: 21px;
         letter-spacing: 2px;
       }
       .client{
@@ -324,9 +367,10 @@ body.home{
         letter-spacing: 1px;
         position: absolute;
         display: block;
-        top: 60px;
+        top: 55px;
         left: 20px;
-        font-size: 21px;
+        font-size: 17px;
+        text-transform: uppercase;
         color: @cW;
       }
     }
@@ -353,18 +397,19 @@ body.home{
       padding: 20px 50px 0;
     }
     .post_title{
-      padding: 60px 7% 0;
-      font-size: 20px;
+      padding: 60px 70px 0;
+      font-size: 19px;
+      letter-spacing: 1px;
+      font-weight: 800;
       text-transform: uppercase;
-      font-weight: bold;
     }
     .post_excerpt{
-      padding: 10px 7% 20px;
-      font-size: 17px;
+      padding: 10px 70px 20px;
+      font-size: 15px;
       line-height: 28px;
     }
     .video{
-      padding: 40px 7% 20px;
+      padding: 40px 70px 20px;
       iframe{ 
         width: 100%;
         height: 320px;
@@ -409,6 +454,7 @@ body.home{
   }
 }
 
+.btn.permalink,
 .btn.open,
 .btn.close{
   height: 40px;
@@ -417,6 +463,10 @@ body.home{
   border: none;
   display: inline-block;
 }
+.btn.permalink{
+  padding: 0;
+}
+.btn.permalink,
 .btn.open{
   background: url(../img/btn_open.png) center;
 }
@@ -465,7 +515,7 @@ body.home{
     margin: 0;
   }
   .ui-tabs{
-    min-height: 730px;
+    //min-height: 730px;
   }
   .ui-tabs-panel{
     margin-top: 60px;
@@ -497,16 +547,17 @@ body.home{
         text-transform: uppercase;
         color: @cW;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 15px;
         letter-spacing: 2px;
       }
       .client{
         font-family: @fontSans;
         letter-spacing: 1px;
         display: block;
-        font-size: 15px;
+        font-size: 13px;
         color: @cW;
         padding-top: 5px;
+        text-transform: uppercase;
       }
     }
     &:hover{
@@ -543,7 +594,9 @@ body.home{
 }
 .block_oquefazemos{
   background: url(../img/oquefazemos_bg.jpg) center;
-  background-size: 100%  auto;
+  background-size:  auto 100%;
+  background-color: #010207;
+  background-repeat: no-repeat;
 
   .line{background: url(../img/oquefazemos_line_h.gif) center repeat-x;}
 
@@ -576,11 +629,6 @@ body.home{
       }
     }
   }
-  .col1-4:nth-child(8){
-    .service{
-      padding: 20px;
-    }
-  }
   .service_wpr{
     position: absolute;
     top: 0;
@@ -603,7 +651,8 @@ body.home{
     }
   }
   .service_title{
-    font-size: 20px;
+    font-size: 16px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: bold;
     opacity: 1;
@@ -612,7 +661,7 @@ body.home{
   }
   .hover{
     opacity: 0;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 23px;
     .transition;
   }
@@ -620,27 +669,32 @@ body.home{
 
 // Sobre
 .block_sobre_title{
-  padding-top: 60px;
-  padding-bottom: 60px;
+  //padding-top: 60px;
+  padding-bottom: 50px;
 }
 .block_sobre{
   background-image: url(../img/sobre_bg.jpg);
   background-position: center;
-  background-size: 100%  auto;
-  min-height: 585px;
+  background-size:  auto 100%;
+  background-color: #010207;
+  background-repeat: no-repeat;
+  padding: 100px 0;
+  // min-height: 585px;
 
   .text{
     color: @cW;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 27px;
-    padding: 140px 0 0;
+    padding: 0 50px;
   }
   .buttons{
     text-align: center;
     padding-top: 40px;
+    padding-bottom: 30px;
     a{
-      width: 160px;
-      line-height: 20px;
+      font-size: 12px;
+      width: 200px;
+      line-height: 18px;
     }
   }
 }
@@ -648,16 +702,18 @@ body.home{
 // Contato
 .block_contato{
   background: @cW;
-  padding-top: 70px;
+  // padding-top: 70px;
   padding-bottom: 90px;
   
   .col1-2{
     padding-top: 84px;
   }
   .contact{
-    padding: 10px 0 0 50px;
+    padding: 0 0 0 50px;
+    position: relative;
+    top: -9px;    
     p {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 35px;
     }
   }
@@ -747,6 +803,11 @@ footer{
     top: 20px;
   }
 }
+body.home{
+  footer{
+    padding-bottom: 200px;
+  }
+}
 
 // Single Projeto
 body.single.post-projetos{
@@ -757,6 +818,14 @@ body.single.post-projetos{
 body.single{
 //  background: url(../img/z_lixo/projeto-interna.jpg) top center;
 }
+.info{
+  padding-top: 25px;
+  font-size: 14px;
+
+  .meta{
+    font-weight: bold;
+  }
+}
 .cat_projetos{
   .project_title{
     color: @cK;
@@ -765,12 +834,19 @@ body.single{
     font-family: 20px;
     clear: both;
     padding-top: 25px;
-    font-size: 35px;
-    font-weight: bold;
+    font-size: 21px;
+    font-weight: 800;
+
   }
   .client{
+    letter-spacing: 1px;
+    font-size: 15px;
+    text-transform: uppercase;
     padding-top: 10px;
-    font-size: 28px;
+  }
+  .info{
+    text-align: right;
+    line-height: 20px;
   }
   .thumb{
     img{
@@ -791,16 +867,19 @@ body.single{
 
     article{
       .post_excerpt{
-        padding: 60px 7% 60px 0;
-        font-size: 17px;
+        padding: 60px 7% 60px 70px;
+        font-size: 15px;
         line-height: 28px;
       }
       .video{
-        padding: 60px 0 60px 7%;
+        padding: 60px 70px 60px 7%;
         iframe{ 
           width: 100%;
           height: 320px;
         }
+      }
+      .info{
+        text-align: left;
       }
     }
     .galeria{
@@ -971,55 +1050,30 @@ body.single{
   }
 }
 body.tag,
+body.post-blog,
 body.category-blog{
   
   .home_panel{
     position: absolute;
-    height: 400px;
-    img{
+    max-height: 560px;
+    figure{
       top: 140px;
+      background-image: url(../img/index_blog_0.jpg);
+      background-size: 100% auto;
+      background-position: bottom center;
+      height: 100%;
     }
   }
   .gap{
-    height: 400px;
+    max-height: 210px;
   }
   .block_blog{
     background: @cW;
     padding-top: 50px;
   }
   .panel.logo{
-    top: -160px;
     img{
-      max-width: 1200px;
-    }
-  }
-
-  .block_breadcrumbs{
-    margin: 0 0 50px;
-  }
-}
-// single Blog
-body.post-blog{
-  
-  .home_panel{
-    position: absolute;
-    height: 200px;
-    img{
-      top: 140px;
-    }
-  }
-  .gap{
-    height: 200px;
-  }
-  .block_blog{
-    background: @cW;
-    //min-height: 5000px;
-    padding-top: 50px;
-  }
-  .panel.logo{
-    top: -30px;
-    img{
-      max-width: 1200px;
+      max-width: 100%;
     }
   }
 
@@ -1030,8 +1084,9 @@ body.post-blog{
 
 .post_blog{
   .post_title{
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 1px;
     padding-bottom:10px;
     text-transform: uppercase;
   }
@@ -1097,29 +1152,32 @@ body.post-blog{
 
     figure{
       img{
-        display: block;width: 100%;
+        display: block;
+        width: 100%;
       }
     }
     .post_title{
-      font-size: 21px;
-      font-weight: bold;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 1px;
       padding-top: 30px;
       padding-bottom:10px;
       text-transform: uppercase;
-      border-bottom: 2px solid @cK;
+      border-bottom: 1px solid @cK;
     }
     .excerpt{
-      font-size: 18px;
+      font-size: 15px;
       line-height: 28px;
       padding-top: 10px;    
       padding-bottom: 20px;
-      border-bottom: 2px solid @cK;
+      border-bottom: 1px solid @cK;
     }
     .post_footer{
       font-weight: bold;
       text-align: right;
-      font-size: 12px;
-      padding-top: 5px;
+      font-size: 11px;
+      padding-top: 10px;
+      color: @cG;
       text-transform: uppercase;
     }
     .link{
@@ -1189,7 +1247,9 @@ aside{
   }
   h2, h3{
     font-family: @fontSlab;
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1px;
     text-transform: uppercase;
     border-bottom: 1px solid @cG;
     padding-bottom: 10px;

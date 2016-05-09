@@ -8,6 +8,10 @@
 			// Get all Categories inside Cat Projetos
 			$catid = get_cat_ID('projetos'); 
 
+			$cat_obj = get_category_by_slug( 'home-destaque' );
+			$catid_exclude = $cat_obj->term_id;
+			// echo "<h2>". $catid_exclude . '</h2>';
+
 		    $args = array(
 			    'hide_empty'		 => 0,
 				'title_li'           => '',
@@ -34,9 +38,10 @@
 				<div id="tabs-00" class="category wpr all">
 					<div class="post_list">
 						<?php 
+							$catids = '-'.$catid_exclude.', '. $catid; 
 							$args = array( 
 								'posts_per_page' => 8,
-								'cat'		 => $catid
+								'cat'		 => $catids
 							);
 							$cat_posts = get_posts( $args );
 						

@@ -2,7 +2,9 @@
 
 <div class="gap"></div>
 <div class="panel logo">
-	<img src="<?php echo get_template_directory_uri(); ?>/img/panel-title-blog.png" />
+	<div class="block_cntt">
+		<img src="<?php echo get_template_directory_uri(); ?>/img/panel-title-blog.png" />
+	</div>
 </div>
 
 

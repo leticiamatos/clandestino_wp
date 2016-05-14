@@ -15,7 +15,11 @@ $(function() {
 		openEffect  : 'none',
 		closeEffect	: 'none'
 	});
-
+	$('.gallery-item a img').each(function(){
+		img_description = $(this).attr('alt');
+		$(this).parent().attr( 'title', img_description );
+	});
+	
 	$('.bxslider').bxSlider({
 		minSlides: 1,
 		maxSlides: 3,
@@ -166,6 +170,7 @@ $(document).ready(function(){
 	    }
 	}
 	setOrientation();
+
 
 	$("#"+MEASUREMENTS_ID).text(getDimensions());
 	$(window).on("resize", function(){

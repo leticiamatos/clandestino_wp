@@ -44,10 +44,12 @@
 			<?php
 				// Sort a number between 1 - 14 
 				$a = array('1' => '1', '2'=> '2', '3'=> '3', '4'=> '4', '5'=> '5', '6'=> '6', '7'=> '7', '8'=> '8', '9'=> '9', '10'=> '10', '11'=> '11', '12'=> '12', '13'=> '13', '14'=> '14');
-				$random_n = array_rand($a, 1); 
+				$galleryimages = panelimages(271);
+				//var_dump($galleryimages);
+				$random_n = $galleryimages[array_rand($a)]; 
 			?>
 			<section class="home_panel">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/panel/index_abertura_<?php echo $random_n; ?>.jpg" />
+				<img src="<?php echo $random_n; ?>" />
 			</section>
 			<div class="gap"></div>
 			<div class="panel logo">
@@ -67,6 +69,7 @@
 								<?php 
 									getMenu();
 								?>
+								<span class="clear"></span>
 							</ul>
 						</div>
 					</div>

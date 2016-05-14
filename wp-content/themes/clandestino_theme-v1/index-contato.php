@@ -6,7 +6,6 @@
 	$link_instagram = 64;
 	$link_vimeo = 65;
 ?>
-<span data-scroll-index="6" class="target" id="contato"> </span>
 <section class="block_wpr block_contato">
 	<div class="block_cntt">
 		<h2 class="block_title">Contato</h2>

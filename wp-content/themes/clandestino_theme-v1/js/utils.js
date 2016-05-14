@@ -35,6 +35,18 @@ $(function() {
 	})
 
 	$( "#tabs" ).tabs();
+    $( "#tabs-ajax" ).tabs({
+		show: { effect: "fade", duration: 800 },
+		hide: { effect: "fade", duration: 800 },
+		beforeLoad: function( event, ui ) {
+			ui.jqXHR.fail(function() {
+		  	ui.panel.html(
+		    "Ops! Um erro!" );
+        });
+      }
+    });
+
+
 	$( ".post , .page" ).each(function() {
   		$(this).addClass('post-item');
 	});
@@ -164,7 +176,8 @@ $(document).ready(function(){
 	    return $(window).width() + ' (' + $(document).width() + ') x ' + $(window).height() + ' (' + $(document).height() + ')';
 	}
 	getOrientation = function(){
-		if ($(window).width() >= $(window).height()){
+		width_minus200 = $(window).width() - 200;
+		if (width_minus200 >= $(window).height()){
 			return 'horizontal';
 		}else{
 			return 'vertical';

@@ -40,7 +40,8 @@
 		
 <?php if ( is_home() ) : ?>
 		<header class="header_home">
-			<span data-scroll-index="1" class="target" id="home"> </span>
+			<span data-scroll-index="1" class="target"></span>
+			<span class="link_target" id="target_01"> </span>
 		
 			<?php
 				// Sort a number between 1 - 14 
@@ -51,12 +52,14 @@
 				$random_n = $galleryimages[array_rand($a)]; 
 			?>
 			<section class="home_panel">
-				<img src="<?php echo $random_n; ?>" />
+				<div class="home_panel img" style="background-image: url(<?php echo get_template_directory_uri(); ?>/img/index_abertura_1.jpg);"></div>
+				<!-- <img class="panel_img" src="<?php //echo $random_n; ?>" /> -->
+
+				<div class="panel logo">
+					<img src="<?php echo get_template_directory_uri(); ?>/img/panel-title.png" />
+				</div>
+				<div class="white_box"></div>
 			</section>
-			<div class="gap"></div>
-			<div class="panel logo">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/panel-title.png" />
-			</div>
 	
 			<div class="fixed">
 				<section class="block_wpr block_menu">

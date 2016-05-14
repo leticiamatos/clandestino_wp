@@ -182,6 +182,11 @@ input.btn{
   -webkit-appearance: none;
   -webkit-border-radius: 0;
 }
+input.btn_more{
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
 
 /* Home */
 // destaque
@@ -200,8 +205,18 @@ input.btn{
   .title;
 }
 .target{
+  display: block;
   position: relative;
-  top: -150px;
+  top: -170px;
+  clear: both;
+}
+.link_target{
+  display: block;
+  position: relative;
+  clear: both;
+  width: 100%;
+  height: 1px;
+  top: -169px;
 }
 
 .block_menu{
@@ -273,10 +288,10 @@ body.not-top{
   height: 253px !important;
 }
 .gap{
-  height:83vh;
+  height:100vh;
 }
 .vertical .gap{
-  height: 40vh;
+  // height: 40vh;
 }
 body.tag.vertical .gap,
 body.category-blog.vertical .gap,
@@ -285,37 +300,53 @@ body.post-blog.vertical .gap{
 }
 
 
+
 .home_panel{
   position: relative;
   z-index: -1;
-  height: 100%;
+  height: 102vh;
   width: 100%;
-  img{
+  background-position: top center;
+
+  &.img{
     position: fixed;
-    width: 100%;
-    height: auto;
     top: 0;
-    left: 0;
   }
 }
+body.home.vertical .home_panel{
+  height: 55vh;
+}
+
 .panel.logo{
   text-align: center;
-  position: relative;
-  top: 7px;
-  //height: 10vh;
+  position: absolute;
+  bottom: 35px;
+  left: 0;
+  display: block;
   height: auto;
-  max-width: 100%;
+  width: 100%;
   img{
-    //width: 100%;
+    margin-bottom: -5px;
     max-width: 100%;
-    //height: 100%;
-    //max-width: 1400px;
+    width: auto;
     display: inline-block;
   }
 }
-.vertical .panel.logo{
-  top: 2px;
-  height: 5vh;
+body.tag,
+body.category-blog,
+body.post-blog{
+  .panel.logo{
+    position: relative;
+  }
+}
+
+.white_box{
+  width: 100%;
+  height: 35px;
+  background: @cW;
+  position: absolute;
+  bottom: 0;
+
 }
 h1.logo{
   img{
@@ -478,6 +509,8 @@ body.home{
 // Projetos
 .block_projetos{
   background: @cG2;
+  height: 955px;
+  overflow: hidden;
 
   .subcategory.list{
     border-top: 1px dotted @cR;
@@ -520,6 +553,20 @@ body.home{
   .ui-tabs-panel{
     margin-top: 60px;
   }
+  .loader{
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 30px 0;
+  }
+  .load_ajax{
+
+  }
+}
+
+body.dynamic_cntt .block_projetos{
+  height: auto;
+  overflow: visible;
 }
 
 .post_list{
@@ -583,6 +630,24 @@ body.home{
       font-family: @fontSlab;
       font-size: 16px;
       color: @cG;
+    }
+    .load_ajax_wpr{
+      text-align: center;
+    }
+    input.btn_more{
+      overflow: hidden;
+      text-indent: 300px;
+      display: inline-block;
+      background: url(../img/arrow-down.png);
+      background-position: center top;
+      background-repeat: no-repeat;
+      height: 60px;
+      width: 44px;
+      border:none;
+      .transition;
+      &:hover{
+        background-position: center 10px;
+      }
     }
   }
 }

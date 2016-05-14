@@ -1,4 +1,3 @@
-<span data-scroll-index="3" class="target" id="projetos"> </span>
 <section class="block_wpr block_projetos">
 	<div class="block_cntt">
 		<h2 class="block_title">Projetos</h2>

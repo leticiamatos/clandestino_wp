@@ -42,7 +42,7 @@
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 					<div class="galeria">
-						<?php createGallery(get_the_ID()); ?>
+						<?php createGallery(get_the_id()); ?>
 					</div>
 					<div class="col1-2">
 						<div class="post_excerpt"><?php the_excerpt(); ?></div>
@@ -52,14 +52,20 @@
 						<?php // the_content(); // Dynamic Content ?>
 					</div-->
 					<div class="col1-2">
-					<?php 
-						$video_link = get_post_meta(get_the_ID(), 'youtube', true);
-						global $wp_embed;
-						$post_embed = $wp_embed->run_shortcode('[embed]'.$video_link.'[/embed]');
-					?>
+						<?php 
+							$video_link = get_post_meta(get_the_ID(), 'youtube', true);
+							$image_link = get_post_meta(get_the_ID(), 'imagem', true);
+							global $wp_embed;
+							if ($video_link){
+								$post_embed = $wp_embed->run_shortcode('[embed]'.$video_link.'[/embed]');
+							}else if($image_link){
+								$post_embed = '<img src="'. $image_link .'" />';
+							}
+						?>
 						<div class="video">
 							<?php echo $post_embed; ?>
 						</div>
+
 					</div>
 					<span class="clear"></span>
 				</article>

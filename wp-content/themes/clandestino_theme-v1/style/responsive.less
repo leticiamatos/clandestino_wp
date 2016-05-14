@@ -110,8 +110,6 @@
   aside{ display: none;}
 
   body.home{
-    //.gap{ height: 140px; }
-    //.panel.logo { top: 5px; }
     .highlight.post{
       padding-top: 25px;
     }
@@ -287,14 +285,10 @@
   aside{ display: none; }
 
   body.home{
-    //.gap{ height: 320px; }
-    //.panel.logo { top: 5px; }
     .highlight.post{ padding-top: 25px; }
     .highlight.post{
       figure .image_title{ font-size: 25px;}
       figure .client { font-size: 16px;}
-      // a.btn{ display:block;}
-      // button{ display: none;}
     }
     .block_title{
       font-size: 20px;
@@ -391,7 +385,6 @@
   // Blog
   body.single-post,
   body.post-blog {
-    //.gap{ height: 70px; }
     .gap{height: 15vh;}
     .home_panel{
       height: 320px;
@@ -454,14 +447,10 @@
     body{ font-size: 13px; }
 
   body.home{
-    //.gap{ height: 320px; }
-    //.panel.logo { top: 5px; }
     .highlight.post{ padding-top: 25px; }
     .highlight.post{
       figure .image_title{ font-size: 25px;}
       figure .client { font-size: 16px;}
-      // a.btn{ display:block;}
-      // button{ display: none;}
     }
     .block_title{
       font-size: 20px;
@@ -885,3 +874,23 @@
   }
 }
 
+// Iphone Hack
+@media screen and (max-device-width: 480px) {
+  /* All devices with display width less then 480px 
+  will obey the following rules */
+
+  .home_panel{
+    background-size: 100% auto;
+  }
+  body.home.vertical .home_panel{
+    background-size: auto  100%;
+  }
+}
+
+@media screen and (min-width: 480px){
+
+  .home_panel{
+    background-size: cover !important;
+    -webkit-background-size: auto 120% !important;
+  }
+}

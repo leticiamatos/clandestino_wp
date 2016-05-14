@@ -10,7 +10,6 @@
     $pg_oqfazemos_08 = 100;
 ?>
 
-<span data-scroll-index="4" class="target" id="oquefazemos"> </span>
 <section class="block_wpr block_oquefazemos_title">
 	<div class="block_cntt">
 		<h2 class="block_title">O que Fazemos</h2>

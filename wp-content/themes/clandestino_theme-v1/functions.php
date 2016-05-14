@@ -545,21 +545,21 @@ function getMenu(){
       '<a href="'. get_category_link($catid) .'" class="menu-blog">Blog</a>';
       //'<li class="menu-item mobile"><a href="'. $cat_link .'">As Histórias</a>'.
   } else{
-    $menu ='<a href="'. home_url() .'/#home" class="menu-home">Home</a>'.
-      '<a href="'. home_url() .'/#destaque" class="menu-destaque">Destaque</a>'.
-      '<a href="'. home_url() .'/#projetos" class="menu-projetos">Projetos</a>'.
-      '<a href="'. home_url() .'/#oquefazemos" class="menu-oquefazemos">O Que Fazemos</a>'.
-      '<a href="'. home_url() .'/#sobre" class="menu-sobre">Sobre</a>'.
-      '<a href="'. home_url() .'/#contato" class="menu-contato">Contato</a>'.
+    $menu ='<a href="'. home_url() .'/#target_01" class="menu-home">Home</a>'.
+      '<a href="'. home_url() .'/#target_02" class="menu-destaque">Destaque</a>'.
+      '<a href="'. home_url() .'/#target_03" class="menu-projetos">Projetos</a>'.
+      '<a href="'. home_url() .'/#target_04" class="menu-oquefazemos">O Que Fazemos</a>'.
+      '<a href="'. home_url() .'/#target_05" class="menu-sobre">Sobre</a>'.
+      '<a href="'. home_url() .'/#target_06" class="menu-contato">Contato</a>'.
       '<a href="'. get_category_link($catid) .'" class="menu-blog">Blog</a>';
   }            
   echo $menu;
 }
 function getLogoLink(){
   if ( is_home() ) {
-    $link ='<a data-scroll-nav="1"><img src="'. get_template_directory_uri() .'/img/menu_logo.png" title="Mulheres da Terra" /></a>';
+    $link ='<a data-scroll-nav="1"><img src="'. get_template_directory_uri() .'/img/menu_logo.png" title="Clandestino" /></a>';
   } else{
-    $link ='<a href="'. home_url() .'"><img src="'. get_template_directory_uri() .'/img/menu_logo.png" title="Mulheres da Terra" /></a>';
+    $link ='<a href="'. home_url() .'"><img src="'. get_template_directory_uri() .'/img/menu_logo.png" title="Clandestino" /></a>';
   }            
   echo $link;
 }
@@ -584,7 +584,37 @@ function createGallery2($post_id){
     endif;
 }
 
-function createGallery($posts_id){
+function createGallery($post_id){
+    $post_cntt = get_the_content($post_id);
+
+    preg_match('/\[gallery.*ids=.(.*).\]/', $post_cntt, $ids);
+    $image_ids = explode(",", $ids[1]); // Get all image ids from short code
+    $images = array_slice($image_ids,0,3);
+
+    if($images):
+        $image_list = '<ul class="bxslider">';
+
+        foreach($image_ids as $image_id) :
+
+            $attachment = get_post( $image_id );
+            $url =         $attachment->guid;
+            $caption =     get_post_field('post_excerpt', $attachment->ID);
+            // echo $image_id;
+            // echo $url;
+            // echo '</br>';
+            // echo $caption;
+            // echo '</br>';
+
+            $image_list .= '<li class="gallery-item"><a data-fancybox-group="galleria" class="fancybox" href="' . $url . '" alt="'. $caption .'"><img src="' . $url . '" alt="'. $caption .'" /></a>' . '</li>';               
+        endforeach;
+
+    else:
+        $image_list .= '<h5> Projeto sem imagens... </h5>';
+    endif;
+        $image_list .= '</ul>';
+        echo $image_list;
+}
+function createGallery3($posts_id){
     $thumb_ID = get_post_thumbnail_id( $posts_id );
     $attachments = get_children( 
         array( 
@@ -605,23 +635,14 @@ function createGallery($posts_id){
     if($attachments):
 
         foreach ( $attachments as $item){
-            //$attr = ( trim( $item->post_excerpt ) ) ? array( 'aria-describedby' => "$selector-$id" ) : '';
-            // $title =       $item->post_title;
             $url =         wp_get_attachment_url( $item->ID );
-            // $link =        get_attachment_link( $item->ID );
-            // $alt =         get_post_meta( $item->ID, '_wp_attachment_image_alt', true );
-            // $description = $item->post_content;
             $caption =     $item->post_excerpt;
-            // $attr = get_post_meta( $item->ID, '_wp_attachment_image_alt', true );
 
             $image_list .= '<li class="gallery-item"><a data-fancybox-group="galleria" class="fancybox" href="' . $url . '" alt="'. $caption .'"><img src="' . $url . '" alt="'. $caption .'" /></a>' . '</li>';
         }
     
     elseif ($gallery):
-
         $image_list = '<ul class="bxslider">';
-
-        // Loop through each image in each gallery
         foreach( $gallery as $image_url ) {
             $image_list .= '<li class="gallery-item"><a data-fancybox-group="galleria" class="fancybox" href="' . $image_url . '"><img src="' . $image_url . '" /></a>' . '</li>';
         }

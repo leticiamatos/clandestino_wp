@@ -1,7 +1,6 @@
 <?php
 	$pg_sobre = 57;
 ?>
-<span data-scroll-index="5" class="target" id="sobre"> </span>
 <section class="block_wpr block_sobre_title">
 	<div class="block_cntt">
 		<h2 class="block_title">Sobre</h2>
